@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/styles.css">
+  <title>EJS App Engine</title>
+</head>
+<body>
+    <main class="wrapper">
+      <h3>Records catalogue</h3>
+      <% if(catalogue.length) { %> 
+        <table>
+          <thead>
+            <tr>
+              <th>Artist</th>
+              <th>Record</th>
+              <th>Price</th>
+              <th>Cover</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% catalogue.forEach(record => { %> 
+              <tr>
+                <td>
+                    <%= record.artist %> 
+                </td>
+                <td>
+                    <%= record.title %> 
+                </td>
+                <td>
+                    <%= record.price %> 
+                </td>
+                <td>
+                    <img src="<%= record.thumbnail %> " alt="<%= record.title %> ">
+                </td>
+              </tr>  
+            <% }) %> 
+          </tbody>
+        </table>
+      <% } else { %> 
+          <p>There are no records available at this moment</p>
+      <% } %> 
+      <a href="/addRecord" class="btn-link" >Add new record</a>
+    </main>
+    
+</body>
+</html>

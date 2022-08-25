@@ -1,0 +1,32 @@
+doctype
+html
+  head
+    meta(charset UTF-8)
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="css/styles.css")
+    title PUG App Engine 
+  
+  body
+    main.wrapper
+      h3 Records catalogue
+      if catalogue.length
+        table
+          thead
+            tr
+              th Artist
+              th Record
+              th Price
+              th Cover
+            
+          tbody                
+            each record in catalogue
+              tr
+                td #{record.artist}                    
+                td #{record.title}                    
+                td #{record.price}                    
+                td 
+                  img(src =record.thumbnail, alt = record.title)
+      else 
+        p There are no records available at this moment
+    
+      a(href="/addRecord", class="btn-link") Add new record

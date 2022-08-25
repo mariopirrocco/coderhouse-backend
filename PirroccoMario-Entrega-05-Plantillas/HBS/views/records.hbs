@@ -1,0 +1,26 @@
+<h3>Records catalogue</h3>
+{{#if catalogue}}
+  <table>
+    <thead>
+      <tr>
+        <th>Artist</th>
+        <th>Record</th>
+        <th>Price</th>
+        <th>Cover</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each catalogue}} 
+        <tr>
+          <td>{{artist}}</td>
+          <td>{{title}}</td>
+          <td>{{price}}</td>
+          <td><img src={{thumbnail}} alt={{title}}</td>
+        </tr>  
+      {{/each}}
+    </tbody>
+  </table>
+{{else}}
+    <p>There are no records available at this moment</p>
+{{/if}}
+<a href="/addRecord" class="btn-link" >Add new record</a>
