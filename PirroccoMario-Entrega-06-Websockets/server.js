@@ -42,7 +42,7 @@ io.on('connection', async(socket) => {
   console.log(`There are ${messages.length} messages in chat`)
 
   // Send all products
-  io.emit('server:envioproductos', data)
+  socket.emit('server:envioproductos', data)
 
   socket.on('client:envioproduct', (recordObject) => {
     data.push(recordObject)
@@ -52,7 +52,7 @@ io.on('connection', async(socket) => {
   })
 
   // Send chat messages
-  io.emit('server:enviomessages', messages)
+  socket.emit('server:enviomessages', messages)
 
   socket.on('client:enviomessage', (messageObject) => {
     messages.push(messageObject)
