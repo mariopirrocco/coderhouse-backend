@@ -101,9 +101,10 @@ async function renderMessages(messages) {
     try {
     const html = messages.map((messageInfo) => {
       return `<div>
-              <strong style="color: blue;" >${messageInfo.email}</strong>[
-              <span style="color: brown;">${messageInfo.date}</span>]:
-              <em style="color: green;font-style: italic;">${messageInfo.message}</em> </div>`
+                <strong>${messageInfo.email}</strong>
+                [<span>${messageInfo.date}</span>]:
+                <em>${messageInfo.message}</em> 
+              </div>`
     })
     .join(' ')
 
