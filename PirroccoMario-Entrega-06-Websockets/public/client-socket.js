@@ -5,12 +5,12 @@ const formArtist = document.querySelector('#artist')
 const formTitle = document.querySelector('#title')
 const formPrice = document.querySelector('#price')
 const formThumbnail = document.querySelector('#thumbnail')
-const productsPool = document.querySelector('.productsPool')
-const noProducts = document.querySelector('.noProducts')
-const yesProducts = document.querySelector('.yesProducts')
+const recordsCatalogue = document.querySelector('.records-catalogue')
+const noRecords = document.querySelector('.no-records')
+const loadedRecords = document.querySelector('.loaded-records')
 
 /*-------- Records management --------*/
-function postProduct() {
+function postRecord() {
   try {
     const artist = formArtist.value
     const title = formTitle.value
@@ -18,30 +18,30 @@ function postProduct() {
     const thumbnail = formThumbnail.value
 
     const recordObject = { artist, title, price, thumbnail }
-    socket.emit('client:envioproduct', recordObject)
+    socket.emit('client:sendRecord', recordObject)
 
   } catch(err) {
     console.log(`There was an error: ${err}`)
   }
 }
 
-async function renderProduct(data) {
+async function renderRecords(data) {
   try {
     const response = await fetch('/template.hbs')
     const templateHbs = await response.text()
 
-    productsPool.innerHTML = '';
+    recordsCatalogue.innerHTML = '';
     if (data.length > 0) {
-      yesProducts.style.display = '';
-      noProducts.style.display = 'none';
-      data.forEach((product) => {
+      loadedRecords.style.display = 'block';
+      noRecords.style.display = 'none';
+      data.forEach((record) => {
         const template = Handlebars.compile(templateHbs);
-        const html = template(product);
-        productsPool.innerHTML += html;
+        const html = template(record);
+        recordsCatalogue.innerHTML += html;
       });
     } else {
-      yesProducts.style.display = 'none'
-      noProducts.style.display = ''
+      loadedRecords.style.display = 'none'
+      noRecords.style.display = 'block'
     }
   } catch(err) {
     console.log(`There was an error loading the catalogue, error: ${err}`)
@@ -50,12 +50,12 @@ async function renderProduct(data) {
 
 formProductos.addEventListener('submit', (e) => {
   e.preventDefault()
-  postProduct()
+  postRecord()
   formProductos.reset()
 })
 
-socket.on('server:envioproductos', (data) => {
-  renderProduct(data)
+socket.on('server:sendRecords', (data) => {
+  renderRecords(data)
 })
 
 
@@ -114,6 +114,6 @@ async function renderMessages(messages) {
   }
 }
 
-socket.on('server:enviomessages', (messages) => {
+socket.on('server:sendMessages', (messages) => {
   renderMessages(messages)
 })

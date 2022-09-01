@@ -2,11 +2,14 @@
 const fs = require('fs')
 const express = require('express')
 const app = express()
+const { engine } = require('express-handlebars')
 const path = require('path')
 const { Server:IOServer } = require('socket.io')
 
 /*-------- Middleware --------*/
+
 app.use(express.static(path.join(__dirname, '/public')))
+
 
 /*-------- Server --------*/
 const port = 8081
@@ -42,24 +45,24 @@ io.on('connection', async(socket) => {
   console.log(`There are ${messages.length} messages in chat`)
 
   // Send all products
-  socket.emit('server:envioproductos', data)
+  socket.emit('server:sendRecords', data)
 
-  socket.on('client:envioproduct', (recordObject) => {
+  socket.on('client:sendRecord', (recordObject) => {
     data.push(recordObject)
     console.log(data)
     // Send products to all users
-    io.emit('server:envioproductos', data)
+    io.emit('server:sendRecords', data)
   })
 
   // Send chat messages
-  socket.emit('server:enviomessages', messages)
+  socket.emit('server:sendMessages', messages)
 
   socket.on('client:enviomessage', (messageObject) => {
     messages.push(messageObject)
     console.log(messages)
     writeChatLog()
     // Send products to all users
-    io.emit('server:enviomessages', messages)
+    io.emit('server:sendMessages', messages)
   })
 })
 
