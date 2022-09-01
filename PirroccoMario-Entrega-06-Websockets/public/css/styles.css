@@ -1,0 +1,16 @@
+body {
+  font-family: sans-serif;
+}
+
+img {
+  width: 240px;
+}
+
+input,
+textarea {
+  display: block;
+  margin-bottom: .4rem;
+  padding: 8px 8px 5px;
+  font-size: inherit;
+  font-family: sans-serif;
+}
