@@ -84,7 +84,7 @@ function postMessage2() {
     const date = `${getCurrentTime().today} - ${getCurrentTime().uyTime}`
     const messageObject = { email, date, message }
 
-    socket.emit('client:enviomessage', messageObject)
+    socket.emit('client:sendMessages', messageObject)
 
   } catch(err) {
     console.log(`There was an error retrieving the messages, error: ${err}`)

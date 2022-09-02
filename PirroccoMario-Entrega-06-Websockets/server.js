@@ -57,7 +57,7 @@ io.on('connection', async(socket) => {
   // Send chat messages
   socket.emit('server:sendMessages', messages)
 
-  socket.on('client:enviomessage', (messageObject) => {
+  socket.on('client:sendMessages', (messageObject) => {
     messages.push(messageObject)
     console.log(messages)
     writeChatLog()
