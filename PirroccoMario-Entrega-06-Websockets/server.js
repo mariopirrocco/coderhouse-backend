@@ -44,25 +44,24 @@ io.on('connection', async(socket) => {
   console.log(`User id: ${socket.id} has joined the conversation`)
   console.log(`There are ${messages.length} messages in chat`)
 
-  // Send all products
+  // Send all records
   socket.emit('server:sendRecords', data)
 
   socket.on('client:sendRecord', (recordObject) => {
     data.push(recordObject)
     console.log(data)
-    // Send products to all users
+    // Send records to all users
     io.emit('server:sendRecords', data)
   })
 
   // Send chat messages
   socket.emit('server:sendMessages', messages)
 
-  socket.on('client:sendMessages', (messageObject) => {
+  socket.on('client:sendMessage', (messageObject) => {
     messages.push(messageObject)
     console.log(messages)
     writeChatLog()
-    // Send products to all users
+    // Send messages to all users
     io.emit('server:sendMessages', messages)
   })
 })
-
