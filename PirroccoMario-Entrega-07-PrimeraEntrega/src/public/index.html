@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+  <h2>Add records to catalogue</h2>
+  <div>
+    <form action="/api/records" method="POST" name="inputRecords">
+      <input type="text" name="artist" placeholder="Artist" /> <br>
+      <input type="text" name="record" placeholder="Record Name" /> <br>
+      <input type="number" name="price" placeholder="Price" /> <br>
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+</body>
+
+</html>
