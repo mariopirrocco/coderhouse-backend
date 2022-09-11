@@ -28,8 +28,8 @@ routerProducts.post('/', onlyAdmin, async (req, res) => {
   res.json({ id: await catalogue.save(req.body) })
 })
 
-routerProducts.put('/:id/productos', async (req, res) => {
-  res.json({ id: await catalogue.update(req.params.id) })
+routerProducts.put('/:id/productos', onlyAdmin, async (req, res) => {
+  res.json({ id: await catalogue.update(req.body, req.params.id) })
 })
 
 routerProducts.delete('/:id', onlyAdmin, async (req, res) => {
