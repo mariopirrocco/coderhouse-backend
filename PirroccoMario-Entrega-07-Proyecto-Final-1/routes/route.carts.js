@@ -13,7 +13,6 @@ routerCarts.get('/:id', async (req, res) => {
   res.json(( await carts.listAll() ))  
 })
 
-
 routerCarts.get('/:id/productos', async (req, res) => {
   const cart = await carts.listById(req.params.id)
   res.json(cart.products)
@@ -21,18 +20,18 @@ routerCarts.get('/:id/productos', async (req, res) => {
 
 routerCarts.post('/:id/productos', async (req, res) => {
   const cart = await carts.listById(req.params.id)
-  const producto = await productsApi.listById(req.body.id)
-  cart.products.push(producto)
-  await carts.actualizar(cart, req.params.id)
+  const product = await productsApi.listById(req.body.id)
+  cart.products.push(product)
+  await carts.update(cart, req.params.id)
   res.end()
 })
 
 routerCarts.delete('/:id', async (req, res) => {
-  res.json(await carts.borrar(req.params.id))
+  res.json(await carts.delete(req.params.id))
 })
 
 routerCarts.delete('/:id/productos/:idProd', async (req, res) => {
-  const cart = await carts.listar(req.params.id)
+  const cart = await carts.listById(req.params.id)
   const index = cart.products.findIndex( prod => prod.id == req.params.idProd)
   if (index != -1) {
     cart.products.splice(index, 1)
