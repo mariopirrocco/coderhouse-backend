@@ -20,7 +20,7 @@ routerCarts.get('/:id/productos', async (req, res) => {
 
 routerCarts.post('/:id/productos', async (req, res) => {
   const cart = await carts.listById(req.params.id)
-  const product = await productsApi.listById(req.body.id)
+  const product = await products.listById(req.body.id)
   cart.products.push(product)
   await carts.update(cart, req.params.id)
   res.end()
