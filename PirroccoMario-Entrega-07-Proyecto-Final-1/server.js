@@ -12,7 +12,6 @@ app.use('/api/productos', routerProducts)
 app.use('/api/carrito', routerCarts)
 
 
-const port = 8080
-app.listen(port, () => {
+app.listen(process.env.PORT || 8080, () => {
 	console.log('Server is up and running')
 })
