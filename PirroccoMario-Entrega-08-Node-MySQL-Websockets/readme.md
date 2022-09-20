@@ -1,4 +1,6 @@
 ### Notas
+- No sé por que dividió la entrega en dos carpetas.. lo subí tres veces ya
+
 - La base de datos a crear en MySQL se llama products
 - Comando para crear tabla records en products es npm run buildMYSQL
 - Comando para crear tabla messages en SQLlite3 es npm run buildSQL
