@@ -1,0 +1,72 @@
+// crear base de datos
+use ecommerce
+
+// crear colecciones
+db.createCollection('mensajes')
+db.createCollection('productos')
+
+// insertar documentos
+db.mensajes.insertMany([
+  {'from': 'andres@mail.com', 'mensaje': 'Hola, tengo una consulta por una lijadora'},
+  {'from': 'ventas@empresa.com', 'mensaje': 'Buenos días, en que podemos ayudarte?'},
+  {'from': 'andres@mail.com', 'mensaje': 'La lijadora XP100, tiene garantía extendida?'},
+  {'from': 'ventas@empresa.com', 'mensaje': 'Sí, tiene una garantía por 2 años si la compras en línea'},
+  {'from': 'andres@mail.com', 'mensaje': 'Excelente, ya concreto la compra'},
+  {'from': 'ventas@empresa.com', 'mensaje': 'Gracias por comprar en nuestra empresa'},
+  {'from': 'dami@ember.com', 'mensaje': 'Hola, hay alguien por ahí?'},
+  {'from': 'dami@ember.com', 'mensaje': 'Holaaaaaaaa'},
+  {'from': 'ventas@empresa.com', 'mensaje': 'Hola dami, decime en que puedo ayudarte?'},
+  {'from': 'dami@ember.com', 'mensaje': 'No, dejá, ya compré en otro lado..'}
+])
+db.productos.insertMany([
+  {'producto': 'Lijadora XP100', 'precio': 3500, 'stock': 80},
+  {'producto': 'Alambre de campo 100mts', 'precio': 1200, 'stock': 790},
+  {'producto': 'Pinza alicate', 'precio': 800},
+  {'producto': 'Lámpara portatil', 'precio': 460},
+  {'producto': 'Pulidora automática', 'precio': 4700},
+  {'producto': 'Tester digital', 'precio': 4100},
+  {'producto': 'Llave inglesa', 'precio': 2700},
+  {'producto': 'Cinta aisladora', 'precio': 110},
+  {'producto': 'Pinza de fuerza', 'precio': 980},
+  {'producto': 'Aceite WD40', 'precio': 700}
+])
+
+// mostrar todos los mensajes y todos los productos
+db.mensajes.find()
+db.productos.find()
+
+// mostrar la cantidad de elementos que hay en cada colección
+db.mensajes.estimatedDocumentCount()
+db.productos.estimatedDocumentCount()
+
+// agregar un producto más a la colección
+db.productos.insertOne({'producto': 'Barniz para madera oscura', 'precio': 420, 'stock': 34})
+
+// listar productos con precio menor a 1000
+db.productos.find({'precio': {$lt:1000}})
+
+// listar los productos con precio entre 1000 y 3000 pesos
+db.productos.find({$and: [{precio: {$gt: 1000}}, {precio: {$lt: 3000}}]})
+
+// mostrar el producto con el precio más barato
+db.productos.find().sort({'precio': 1}).limit(1)
+
+// agregar stock a todos los productos
+db.productos.updateMany({}, {$set: {'stock': 100}})
+
+// cambiar stock a 0 de todos los productos que valgan más de 4000
+db.productos.updateMany({'precio': {$gt: 4000}}, {$set: {'stock': 0}})
+
+// borrar productos con valor menor a 1000
+db.productos.deleteMany({'precio': {$lt: 1000}})
+
+// crear usuario 'pepe' clave asd456 que solo pueda leer base de datos ecommerce
+db.createUser(
+  {
+    user: 'pepe',
+    pwd: 'asd456',
+    roles: [
+      { role: 'read', db: 'ecommerce'}
+    ]
+  }
+)
