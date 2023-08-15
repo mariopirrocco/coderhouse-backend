@@ -1,0 +1,14 @@
+<div>
+  <h2>{{heading}}</h2>
+  <div id="products-list">
+    {{#each products}}
+      <div class="prod" style="margin-bottom: 1rem;">
+        {{this.title}}<br>
+        {{this.description}}
+      </div>
+    {{/each}}
+  </div>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/home.js"></script>

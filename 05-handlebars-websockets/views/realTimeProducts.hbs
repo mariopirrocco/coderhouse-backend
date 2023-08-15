@@ -1,0 +1,36 @@
+<style>
+  div { margin-bottom: 1rem; }
+  input { margin-bottom: .7rem }
+  thead tr { font-weight: bold;}
+  td {padding-right: 20px;}
+</style>
+
+<div>
+  <h2>{{heading}}</h2>
+  <div style="margin-bottom: 1rem">
+    <form>
+      <input id="title"  type="text" name="title" placeholder="Title" required></input> <br>
+      <input id="description"  type="text" name="description" placeholder="Description" required></input> <br>
+      <input id="price"  type="text" name="price" placeholder="Price" required ></input> <br>
+      <input id="stock"  type="text" name="stock" placeholder="Stock" required ></input> <br>
+      <input id="submit" type="submit" value="submit" >
+    </form>
+  </div>
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <td>Name</td>
+          <td>Description</td>
+          <td>Price</td>
+          <td>Stock</td>
+        </tr>
+      </thead>
+      <tbody id="products-list"></tbody>
+    </table>
+  </div>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/realtime.js"></script>
+
