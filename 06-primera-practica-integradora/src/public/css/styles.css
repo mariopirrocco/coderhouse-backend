@@ -1,0 +1,51 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+td {
+  padding: 4px 12px;
+}
+
+input {
+  display: block;
+  margin-bottom: 12px;
+  font: inherit;
+  width: 100%;
+  padding: 12px;
+  box-sizing: border-box;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+input[type="submit"] {
+  /* width: 100%; */
+  background: green;
+  color: white;
+  border: none;
+}
+
+.container {
+  max-width: 850px;
+  margin: auto;
+  border-radius: 6px;
+}
+
+.product-list {
+  padding: 4rem;
+  border: 1px solid #ccc;
+}
+
+.data-entry {
+  width: 450px;
+  margin: auto;
+  text-align: center;
+  padding-top: 2rem;
+}
+
+h1 {
+  text-align: center;
+}
