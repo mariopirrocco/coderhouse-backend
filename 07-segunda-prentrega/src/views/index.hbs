@@ -1,0 +1,47 @@
+<div class="container">
+  <div>
+    <h1>Welcome to your Coder WebStore</h1>
+
+    <div class="product-list">
+      <table class="table">
+        <thead class="table-dark">
+          <tr>
+            <th> # </th>
+            <th> Title </th>
+            <th> Description </th>
+            <th> Price </th>
+            <th> Stock </th>
+            <th> Actions </th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each products.docs}}
+          <tr>
+            <td> {{this.id}} </td>
+            <td> {{this.title}} </td>
+            <td> {{this.description}} </td>
+            <td class="price"> {{this.price}} </td>
+            <td class="stock"> {{this.stock}} </td>
+            <td>
+              <a href="/edit/{{ this._id }}" class="btn btn-success"> Edit </a>
+              <a href="/delete/{{ this._id }}" class="btn btn-danger"> Delete </a>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+      <div>
+        <a href="/api/products">See all products</a>
+      </div>
+    </div>
+    <div class="data-entry">
+      <form class="" action="/api/products" method="POST">
+        <input class="" type="text" name="title" placeholder="Title...">
+        <input class="" type="text" name="description" placeholder="Description...">
+        <input class="" type="number" name="price" placeholder="Price...">
+        <input class="" type="number" name="stock" placeholder="Stock...">
+        <input type="submit" value="Send" class="btn btn-primary">
+      </form>
+    </div>
+  </div>
+</div>

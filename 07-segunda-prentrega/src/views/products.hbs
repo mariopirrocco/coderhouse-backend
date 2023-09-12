@@ -1,0 +1,43 @@
+<link href="../css/styles.css"" rel=" stylesheet">
+
+<div class="container">
+  <div>
+    <div class="product-list">
+      <table class="table">
+        <thead class="table-dark">
+          <tr>
+            <th> # </th>
+            <th> Title </th>
+            <th> Description </th>
+            <th> Price </th>
+            <th> Stock </th>
+            <th> Actions </th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each products.docs}}
+          <tr>
+            <td> {{this.id}} </td>
+            <td> {{this.title}} </td>
+            <td> {{this.description}} </td>
+            <td class="price"> {{this.price}} </td>
+            <td class="stock"> {{this.stock}} </td>
+            <td>
+              <a href="/edit/{{ this._id }}" class="btn btn-success"> Edit </a>
+              <a href="/delete/{{ this._id }}" class="btn btn-danger"> Delete </a>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <a href="/api/products?page={{products.prevPage}}&limit={{products.limit}}">Prev</a>
+      <a href="/api/products?page={{products.nextPage}}&limit={{products.limit}}">Next</a>
+    </div>
+
+    <h5>
+      {{ products.page }} / {{ products.totalPages }}
+    </h5>
+  </div>
+</div>
